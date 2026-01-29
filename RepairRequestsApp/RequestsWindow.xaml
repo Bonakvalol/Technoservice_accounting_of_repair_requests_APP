@@ -1,0 +1,62 @@
+﻿<Window x:Class="RepairRequestsApp.RequestsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Заявки на ремонт" 
+        Height="600" 
+        Width="1000"
+        WindowStartupLocation="CenterOwner"
+        FontFamily="Monotype Corsiva"
+        Background="#FFFFFF">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#5EC6CD" Padding="10" Margin="0,0,0,10" CornerRadius="5">
+            <StackPanel>
+                <TextBlock Text="Заявки на ремонт оборудования" 
+                           FontSize="20" 
+                           FontWeight="Bold" 
+                           Foreground="White"
+                           HorizontalAlignment="Center"/>
+
+                <WrapPanel Margin="0,10,0,0" HorizontalAlignment="Center">
+                    <ComboBox x:Name="CbStatus" Width="150" Margin="5">
+                        <ComboBoxItem Content="Все статусы" IsSelected="True"/>
+                        <ComboBoxItem Content="В ожидании"/>
+                        <ComboBoxItem Content="В работе"/>
+                        <ComboBoxItem Content="Выполнено"/>
+                    </ComboBox>
+
+                    <Button Content="Обновить" 
+                            Background="White" 
+                            Foreground="#5EC6CD" 
+                            Width="100" 
+                            Height="30"
+                            Margin="5"
+                            Click="BtnRefresh_Click"/>
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+
+        <DataGrid x:Name="DataGridRequests" 
+                  Grid.Row="1"
+                  Background="#D2F1F0"
+                  AlternatingRowBackground="#FFFFFF"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер" Binding="{Binding RequestNumber}" Width="100"/>
+                <DataGridTextColumn Header="Дата" Binding="{Binding RequestDate, StringFormat=dd.MM.yyyy}" Width="100"/>
+                <DataGridTextColumn Header="Клиент" Binding="{Binding ClientName}" Width="150"/>
+                <DataGridTextColumn Header="Оборудование" Binding="{Binding EquipmentName}" Width="150"/>
+                <DataGridTextColumn Header="Проблема" Binding="{Binding ProblemDescription}" Width="*"/>
+                <DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="80"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

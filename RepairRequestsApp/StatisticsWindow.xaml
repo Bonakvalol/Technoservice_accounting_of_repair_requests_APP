@@ -1,0 +1,95 @@
+﻿<Window x:Class="RepairRequestsApp.StatisticsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Статистика выполнения заявок" 
+        Height="500" 
+        Width="800"
+        WindowStartupLocation="CenterOwner"
+        FontFamily="Monotype Corsiva"
+        Background="#FFFFFF">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#5EC6CD" Padding="10" Margin="0,0,0,10" CornerRadius="5">
+            <TextBlock Text="Статистика выполнения заявок" 
+                       FontSize="20" 
+                       FontWeight="Bold" 
+                       Foreground="White"
+                       HorizontalAlignment="Center"/>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <WrapPanel Grid.Row="0" HorizontalAlignment="Center">
+                <Border Background="#D2F1F0" Margin="5" Padding="20" CornerRadius="5">
+                    <StackPanel>
+                        <TextBlock Text="Выполнено заявок:" 
+                                   FontSize="14" 
+                                   FontWeight="Bold"/>
+                        <TextBlock x:Name="TxtCompletedCount" 
+                                   Text="0" 
+                                   FontSize="36" 
+                                   FontWeight="Bold"
+                                   Foreground="#5EC6CD"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#D2F1F0" Margin="5" Padding="20" CornerRadius="5">
+                    <StackPanel>
+                        <TextBlock Text="Среднее время:" 
+                                   FontSize="14" 
+                                   FontWeight="Bold"/>
+                        <TextBlock x:Name="TxtAverageTime" 
+                                   Text="00:00" 
+                                   FontSize="36" 
+                                   FontWeight="Bold"
+                                   Foreground="#5EC6CD"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+            </WrapPanel>
+
+            <Button Grid.Row="1" 
+                    Content="Обновить статистику" 
+                    Background="#5EC6CD" 
+                    Foreground="White" 
+                    Width="200" 
+                    Height="35"
+                    Margin="0,10,0,10"
+                    HorizontalAlignment="Center"
+                    Click="BtnRefresh_Click"/>
+
+            <Border Grid.Row="2" 
+                    Background="#D2F1F0" 
+                    Padding="10" 
+                    CornerRadius="5">
+                <StackPanel>
+                    <TextBlock Text="Статистика по типам неисправностей:" 
+                               FontSize="16" 
+                               FontWeight="Bold"
+                               Margin="0,0,0,10"/>
+
+                    <DataGrid x:Name="DataGridFaultStats" 
+                              Height="200"
+                              Background="White"
+                              AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Тип неисправности" Binding="{Binding TypeName}" Width="*"/>
+                            <DataGridTextColumn Header="Количество" Binding="{Binding Count}" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

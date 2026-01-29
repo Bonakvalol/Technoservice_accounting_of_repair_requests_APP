@@ -1,0 +1,93 @@
+﻿<Window x:Class="RepairRequestsApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Техносервис - Учет заявок на ремонт" 
+        Height="700" Width="1200"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Monotype Corsiva"
+        Background="#FFFFFF">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#5EC6CD"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="#D2F1F0"/>
+            <Setter Property="AlternatingRowBackground" Value="#FFFFFF"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#5EC6CD"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#5EC6CD"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#D2F1F0" BorderBrush="#5EC6CD" BorderThickness="0,0,2,0">
+            <StackPanel Margin="10">
+                <Label Content="Меню" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                <Button x:Name="BtnRequests" Content="Заявки на ремонт" Click="BtnRequests_Click"/>
+                <Button x:Name="BtnClients" Content="Клиенты" Click="BtnClients_Click"/>
+                <Button x:Name="BtnEquipment" Content="Оборудование" Click="BtnEquipment_Click"/>
+                <Button x:Name="BtnEmployees" Content="Сотрудники" Click="BtnEmployees_Click"/>
+                <Button x:Name="BtnStatistics" Content="Статистика" Click="BtnStatistics_Click"/>
+                <Button x:Name="BtnParts" Content="Запчасти" Click="BtnParts_Click"/>
+
+                <Separator Margin="0,20,0,10"/>
+
+                <Button x:Name="BtnAddRequest" Content="+ Новая заявка" 
+                        Background="#5EC6CD" Foreground="White" Click="BtnAddRequest_Click"/>
+                <Button x:Name="BtnBack" Content="← Назад" Click="BtnBack_Click" IsEnabled="False"/>
+
+                <Separator Margin="0,20,0,10"/>
+
+                <StackPanel>
+                    <Label Content="Статус подключения:"/>
+                    <Border x:Name="ConnectionStatus" CornerRadius="5" Margin="5" Height="20">
+                        <TextBlock x:Name="TxtConnectionStatus" Text="Не подключено" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Button x:Name="BtnTestConnection" Content="Тест подключения" 
+                            Click="BtnTestConnection_Click" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+
+    </Grid>
+</Window>

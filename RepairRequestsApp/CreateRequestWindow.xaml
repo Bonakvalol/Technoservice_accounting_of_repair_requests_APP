@@ -1,0 +1,76 @@
+﻿<Window x:Class="RepairRequestsApp.CreateRequestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Создание заявки на ремонт" 
+        Height="550" 
+        Width="600"
+        WindowStartupLocation="CenterOwner"
+        FontFamily="Monotype Corsiva"
+        Background="#FFFFFF">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#5EC6CD" Padding="10" Margin="0,0,0,10" CornerRadius="5">
+            <TextBlock Text="Создание новой заявки на ремонт" 
+                       FontSize="18" 
+                       FontWeight="Bold" 
+                       Foreground="White"
+                       HorizontalAlignment="Center"/>
+        </Border>
+
+        <StackPanel Grid.Row="1" Margin="5">
+            <Label Content="Клиент:"/>
+            <ComboBox x:Name="CbClients" DisplayMemberPath="DisplayName" Height="30"/>
+
+            <Label Content="Оборудование:"/>
+            <ComboBox x:Name="CbEquipment" DisplayMemberPath="DisplayInfo" Height="30"/>
+
+            <Label Content="Тип неисправности:"/>
+            <ComboBox x:Name="CbFaultTypes" DisplayMemberPath="TypeName" Height="30"/>
+
+            <Label Content="Описание проблемы:"/>
+            <TextBox x:Name="TxtProblem" Height="100" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+
+            <Label Content="Приоритет:"/>
+            <ComboBox x:Name="CbPriority" Height="30">
+                <ComboBoxItem Content="1 - Высокий"/>
+                <ComboBoxItem Content="2" IsSelected="True"/>
+                <ComboBoxItem Content="3"/>
+                <ComboBoxItem Content="4"/>
+                <ComboBoxItem Content="5 - Низкий"/>
+            </ComboBox>
+
+            <!-- ДОБАВЛЕН ЧЕКБОКС ДЛЯ QR-КОДА -->
+            <CheckBox x:Name="CbGenerateQR" 
+                      Content="Сгенерировать QR-код для этой заявки" 
+                      IsChecked="True"
+                      Margin="0,10,0,10"/>
+
+            <Label Content="Комментарий (необязательно):"/>
+            <TextBox x:Name="TxtComment" Height="60" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Отмена" 
+                    Background="#5EC6CD" 
+                    Foreground="White" 
+                    Width="100" 
+                    Height="35"
+                    Margin="5"
+                    Click="BtnCancel_Click"/>
+
+            <Button Content="Создать" 
+                    Background="#5EC6CD" 
+                    Foreground="White" 
+                    Width="100" 
+                    Height="35"
+                    Margin="5"
+                    Click="BtnCreate_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
